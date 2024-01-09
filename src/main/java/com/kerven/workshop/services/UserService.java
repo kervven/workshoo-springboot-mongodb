@@ -1,9 +1,9 @@
-package services;
+package com.kerven.workshop.services;
 
-import domain.User;
+import com.kerven.workshop.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.UserRepository;
+import com.kerven.workshop.repositories.UserRepository;
 
 import java.util.List;
 

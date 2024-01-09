@@ -1,16 +1,16 @@
-package config;
+package com.kerven.workshop.config;
 
-import domain.User;
+import com.kerven.workshop.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.CommandLineRunner;
+import com.kerven.workshop.repositories.UserRepository;
 import org.springframework.context.annotation.Configuration;
-import repositories.UserRepository;
 
 import java.util.Arrays;
 
 
-@Configurable
+@Configuration
 public class Instantiation implements CommandLineRunner {
 
     @Autowired
