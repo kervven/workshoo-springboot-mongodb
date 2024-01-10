@@ -32,8 +32,17 @@ public class UserService{
     }
 
     public User insert(User obj) {
+        if (obj.getEmail().equals(obj.getEmail())) {
+            throw new RuntimeException("Email já cadastrado");
+        }
         return userRepository.insert(obj);
     }
+
+    public void delete(String id) {
+        userRepository.findById(id);
+        userRepository.deleteById(id);
+    }
+
     public User fromDTO(UserDTO objDto) {
         return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
