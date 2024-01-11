@@ -1,5 +1,6 @@
 package com.kerven.workshop.controllers;
 
+import com.kerven.workshop.controllers.util.URL;
 import com.kerven.workshop.domain.Post;
 import com.kerven.workshop.domain.User;
 import com.kerven.workshop.dtos.UserDTO;
@@ -27,6 +28,14 @@ public class PostController {
     public ResponseEntity<Post> findById(@PathVariable String id) {
         Post obj = postService.findById(id);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @RequestMapping(value = "/titlesearch", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
+
+        text = URL.decodeParam(text);
+        List<Post> list = postService.findByTitle(text);
+        return ResponseEntity.ok().body(list);
     }
 
 
