@@ -3,6 +3,7 @@ package com.kerven.workshop.controllers;
 import com.kerven.workshop.domain.User;
 import com.kerven.workshop.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.kerven.workshop.services.UserService;
@@ -41,9 +42,10 @@ public class UserController {
         return ResponseEntity.created((uri)).build();
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> delete(@PathVariable String id) {
+    public ResponseEntity<Object> delete(@PathVariable String id) {
+        userService.findById(id); // só para garantir que o id existe (se não existir, já lança a exceção
         userService.delete(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Usuário deletado com sucesso!");
     }
 
 }
