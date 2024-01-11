@@ -1,5 +1,6 @@
 package com.kerven.workshop.controllers;
 
+import com.kerven.workshop.domain.Post;
 import com.kerven.workshop.domain.User;
 import com.kerven.workshop.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,12 @@ public class UserController {
         obj.setId(id);
         obj = userService.update(obj);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("usuario atualizado com sucesso!");
+    }
+
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 
 }
