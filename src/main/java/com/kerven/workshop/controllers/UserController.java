@@ -48,4 +48,12 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Usuário deletado com sucesso!");
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> update(@RequestBody UserDTO objDto, @PathVariable String id) {
+        User obj = userService.fromDTO(objDto);
+        obj.setId(id);
+        obj = userService.update(obj);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("usuario atualizado com sucesso!");
+    }
+
 }
